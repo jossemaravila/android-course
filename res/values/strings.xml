@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, CadastroAlunosActivity!</string>
+    <string name="app_name">CadastroAlunos</string>
+    <string name="nome">Nome</string>
+    <string name="telefone">Telefone</string>
+    <string name="foto">Foto</string>
+    <string name="endereco">Endereço</string>
+    <string name="nota">Nota</string>
+    <string name="site">Site</string>
+    <string name="inserir">Inserir</string>
+    
+</resources>
