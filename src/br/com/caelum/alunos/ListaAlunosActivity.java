@@ -4,6 +4,7 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -86,19 +87,31 @@ public class ListaAlunosActivity extends Activity {
         super.onCreateContextMenu(menu, v, menuInfo);
 
         final Aluno alunoSelecionado = alunos.get(posicaoSelecionada);
+
+
+        MenuItem menuLigar = menu.add(0, 0, 0, "Ligar " + alunoSelecionado.getNome());
+        Intent intent = new Intent(Intent.ACTION_CALL);
+        intent.setData(Uri.parse("tel:" + alunoSelecionado.getTelefone()));
+        menuLigar.setIntent(intent);
         
-        MenuItem menuExcluir = menu.add(0, 0, 0, "Excluir " + alunoSelecionado.getNome());
-        menuExcluir.setOnMenuItemClickListener(new OnMenuItemClickListener(){
+        MenuItem menuNavegar = menu.add(0, 1, 0, alunoSelecionado.getSite());
+        Intent intentNavegar = new Intent(Intent.ACTION_VIEW);
+        intentNavegar.setData(Uri.parse("http:" + alunoSelecionado.getSite()));
+        menuNavegar.setIntent(intentNavegar);
+
+        MenuItem menuExcluir = menu.add(0, 2, 0, "Excluir " + alunoSelecionado.getNome());
+        menuExcluir.setOnMenuItemClickListener(new OnMenuItemClickListener() {
             public boolean onMenuItemClick(MenuItem item) {
                 AlunoDao dao = new AlunoDao(ListaAlunosActivity.this);
                 dao.excluir(alunoSelecionado);
                 dao.close();
-                
+
                 loadAlunosListView();
 
                 return false;
             }
         });
+
     }
 
     @Override
