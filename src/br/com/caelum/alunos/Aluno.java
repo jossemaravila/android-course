@@ -1,7 +1,12 @@
 package br.com.caelum.alunos;
 
-public class Aluno {
+import java.io.Serializable;
 
+public class Aluno implements Serializable {
+
+    /** serialVersionUID **/
+    private static final long serialVersionUID = -5035077508644595442L;
+    
     private Long id;
     private String nome;
     private String endereco;

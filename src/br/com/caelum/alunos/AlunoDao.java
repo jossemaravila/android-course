@@ -63,10 +63,10 @@ public class AlunoDao extends SQLiteOpenHelper {
     public List<Aluno> listar() {
         List<Aluno> alunos = new ArrayList<Aluno>();
 
-        String[] colunas = {"ID", "NOME", "ENDERECO", "TELEFONE", "SITE", "RATING", "FOTO"};
+        String[] colunas = { "ID", "NOME", "ENDERECO", "TELEFONE", "SITE", "RATING", "FOTO" };
         Cursor c = getWritableDatabase().query(TABLE_NAME, colunas, null, null, null, null, null);
 
-        while(c.moveToNext()){
+        while (c.moveToNext()) {
             Aluno aluno = new Aluno();
             aluno.setId(c.getLong(0));
             aluno.setNome(c.getString(1));
@@ -75,11 +75,33 @@ public class AlunoDao extends SQLiteOpenHelper {
             aluno.setSite(c.getString(4));
             aluno.setRating(c.getFloat(5));
             aluno.setImage(c.getString(6));
-            
+
             alunos.add(aluno);
         }
         c.close();
-        
+
         return alunos;
+    }
+
+    public void atualizar(Aluno aluno) {
+        ContentValues values = new ContentValues();
+        values.put("NOME", aluno.getNome());
+        values.put("ENDERECO", aluno.getEndereco());
+        values.put("TELEFONE", aluno.getTelefone());
+        values.put("SITE", aluno.getSite());
+        values.put("RATING", aluno.getRating());
+        values.put("FOTO", aluno.getImage());
+
+        String whereClause = "id = ?";
+        String[] whereArgs = { aluno.getId().toString() };
+
+        getWritableDatabase().update(TABLE_NAME, values, whereClause, whereArgs);
+    }
+
+    public void excluir(Aluno aluno) {
+        String whereClause = "id = ?";
+        String[] whereArgs = { aluno.getId().toString() };
+
+        getWritableDatabase().delete(TABLE_NAME, whereClause, whereArgs);
     }
 }
