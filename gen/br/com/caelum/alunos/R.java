@@ -20,9 +20,11 @@ public final class R {
         public static final int editNome=0x7f060002;
         public static final int editSite=0x7f060008;
         public static final int editTelefone=0x7f060004;
+        public static final int foto_aluno=0x7f06000d;
         public static final int imageAluno=0x7f060000;
         public static final int listaAlunos=0x7f06000c;
-        public static final int menu_novo=0x7f06000d;
+        public static final int menu_novo=0x7f06000f;
+        public static final int nome_aluno=0x7f06000e;
         public static final int ratingBar=0x7f06000a;
         public static final int textEndereco=0x7f060005;
         public static final int textNome=0x7f060001;
@@ -33,6 +35,7 @@ public final class R {
     public static final class layout {
         public static final int formulario=0x7f030000;
         public static final int lista=0x7f030001;
+        public static final int lista_aluno=0x7f030002;
     }
     public static final class menu {
         public static final int menu_lista_aluno=0x7f050000;

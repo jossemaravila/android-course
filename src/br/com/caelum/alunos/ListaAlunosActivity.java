@@ -8,14 +8,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
-import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 public class ListaAlunosActivity extends Activity {
@@ -71,7 +70,13 @@ public class ListaAlunosActivity extends Activity {
 
     private void loadAlunosListView() {
         alunos = loadAlunosFromDatabase();
-        ArrayAdapter<Aluno> adapter = new ArrayAdapter<Aluno>(this, android.R.layout.simple_list_item_1, alunos);
+        
+        // utilizando meu layout
+        ListViewAdapter adapter = new ListViewAdapter(alunos, this);
+        
+        // utilizando um layout do android
+        //ArrayAdapter<Aluno> adapter = new ArrayAdapter<Aluno>(this, android.R.layout.simple_list_item_1, alunos);
+        
         ListView listaAlunos = (ListView) findViewById(R.id.listaAlunos);
         listaAlunos.setAdapter(adapter);
     }
@@ -88,12 +93,11 @@ public class ListaAlunosActivity extends Activity {
 
         final Aluno alunoSelecionado = alunos.get(posicaoSelecionada);
 
-
         MenuItem menuLigar = menu.add(0, 0, 0, "Ligar " + alunoSelecionado.getNome());
         Intent intent = new Intent(Intent.ACTION_CALL);
         intent.setData(Uri.parse("tel:" + alunoSelecionado.getTelefone()));
         menuLigar.setIntent(intent);
-        
+
         MenuItem menuNavegar = menu.add(0, 1, 0, alunoSelecionado.getSite());
         Intent intentNavegar = new Intent(Intent.ACTION_VIEW);
         intentNavegar.setData(Uri.parse("http:" + alunoSelecionado.getSite()));
