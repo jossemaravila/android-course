@@ -6,5 +6,10 @@
         android:icon="@drawable/novo"
         android:title="Novo">
     </item>
+    <item
+        android:id="@+id/menu_enviar"
+        android:icon="@drawable/novo"
+        android:title="Enviar">
+    </item>
 
 </menu>

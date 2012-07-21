@@ -1,6 +1,9 @@
 package br.com.caelum.alunos;
 
+import java.io.IOException;
 import java.util.List;
+
+import org.apache.http.client.ClientProtocolException;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -70,13 +73,13 @@ public class ListaAlunosActivity extends Activity {
 
     private void loadAlunosListView() {
         alunos = loadAlunosFromDatabase();
-        
+
         // utilizando meu layout
         ListViewAdapter adapter = new ListViewAdapter(alunos, this);
-        
+
         // utilizando um layout do android
-        //ArrayAdapter<Aluno> adapter = new ArrayAdapter<Aluno>(this, android.R.layout.simple_list_item_1, alunos);
-        
+        // ArrayAdapter<Aluno> adapter = new ArrayAdapter<Aluno>(this, android.R.layout.simple_list_item_1, alunos);
+
         ListView listaAlunos = (ListView) findViewById(R.id.listaAlunos);
         listaAlunos.setAdapter(adapter);
     }
@@ -126,6 +129,20 @@ public class ListaAlunosActivity extends Activity {
             Intent intencao = new Intent(this, FormularioActivity.class);
             startActivity(intencao);
             break;
+
+        case R.id.menu_enviar:
+            try {
+                WebClient wc = new WebClient("http://localhost:8080/spring-rest-service/funcionario/");
+                String resultado = wc.get();
+                System.out.println(resultado);
+            } catch (ClientProtocolException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            break;
+
         }
         return super.onOptionsItemSelected(item);
     }

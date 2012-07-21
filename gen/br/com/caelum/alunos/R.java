@@ -23,6 +23,7 @@ public final class R {
         public static final int foto_aluno=0x7f06000d;
         public static final int imageAluno=0x7f060000;
         public static final int listaAlunos=0x7f06000c;
+        public static final int menu_enviar=0x7f060010;
         public static final int menu_novo=0x7f06000f;
         public static final int nome_aluno=0x7f06000e;
         public static final int ratingBar=0x7f06000a;
