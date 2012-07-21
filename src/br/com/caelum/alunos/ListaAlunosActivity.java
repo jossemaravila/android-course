@@ -132,7 +132,7 @@ public class ListaAlunosActivity extends Activity {
 
         case R.id.menu_enviar:
             try {
-                WebClient wc = new WebClient("http://localhost:8080/spring-rest-service/funcionario/");
+                WebClient wc = new WebClient("http://10.0.2.2:8080/spring-rest-service/funcionario/");
                 String resultado = wc.get();
                 System.out.println(resultado);
             } catch (ClientProtocolException e) {
