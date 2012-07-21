@@ -104,4 +104,29 @@ public class AlunoDao extends SQLiteOpenHelper {
 
         getWritableDatabase().delete(TABLE_NAME, whereClause, whereArgs);
     }
+
+    public Aluno buscarPorTelefone(String telefone) {
+        String[] colunas = { "ID", "NOME", "ENDERECO", "TELEFONE", "SITE", "RATING", "FOTO" };
+
+        String selection = "telefone = ?";
+        String[] selectionArgs = { telefone };
+
+        Cursor c = getWritableDatabase().query(TABLE_NAME, colunas, selection, selectionArgs, null, null, null);
+
+        Aluno aluno = null;
+        while (c.moveToNext()) {
+            aluno = new Aluno();
+            aluno.setId(c.getLong(0));
+            aluno.setNome(c.getString(1));
+            aluno.setEndereco(c.getString(2));
+            aluno.setTelefone(c.getString(3));
+            aluno.setSite(c.getString(4));
+            aluno.setRating(c.getFloat(5));
+            aluno.setImage(c.getString(6));
+
+        }
+        c.close();
+
+        return aluno;
+    }
 }
