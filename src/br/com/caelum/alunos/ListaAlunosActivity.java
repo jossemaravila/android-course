@@ -1,9 +1,6 @@
 package br.com.caelum.alunos;
 
-import java.io.IOException;
 import java.util.List;
-
-import org.apache.http.client.ClientProtocolException;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -131,18 +128,8 @@ public class ListaAlunosActivity extends Activity {
             break;
 
         case R.id.menu_enviar:
-            try {
-                WebClient wc = new WebClient("http://10.0.2.2:8080/spring-rest-service/funcionario/");
-                String resultado = wc.get();
-                System.out.println(resultado);
-            } catch (ClientProtocolException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
+            new EnviarAlunosTask(this, alunos).execute();
             break;
-
         }
         return super.onOptionsItemSelected(item);
     }

@@ -23,7 +23,8 @@ public class AlunoConverter {
                 .key("nome").value(aluno.getNome())
                 .key("telefone").value(aluno.getTelefone())
                 .key("site").value(aluno.getSite())
-                .key("foto").value(aluno.getImage());
+                .key("foto").value(aluno.getImage())
+            .endObject();
         }
         
         js.endArray().endObject().endArray().endObject();
